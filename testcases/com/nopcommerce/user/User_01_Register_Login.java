@@ -17,6 +17,10 @@ public class User_01_Register_Login {
   public void TC_02() {
   } 
   
+  @Test
+  public void TC_03() {
+  } 
+  
   @AfterClass
   public void afterClass() {
   }
