@@ -1,7 +1,11 @@
 package commons;
 
+import java.util.Set;
+
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -54,8 +58,69 @@ public class BasePage {
 	public String getAlertText(WebDriver driver) {
 		Alert alert = waitForAlertPresence(driver);
 		return alert.getText();
-		//video topic 3 59:41
 	}
-
-
+	
+	public void sendkeyToAlert(WebDriver driver, String textValue) {
+		waitForAlertPresence(driver).sendKeys(textValue);
+	}
+	
+	public void switchToWindowByID(WebDriver driver, String windowID) {
+		//Get hết ra các ID đang có
+		Set<String> allWindowIDs = driver.getWindowHandles();
+		
+		//Duyệt qua các giá trị trong all windows
+		for(String id : allWindowIDs) {
+			//ktra điều kiện nếu khác với windowID truyền vào thì switch
+			if(!id.equals(windowID)) {
+				driver.switchTo().window(id);
+				break;
+			}
+		}
+	}
+	
+	public void switchToWindowTitle(WebDriver driver, String tabTitle) {
+		Set<String> allTabIDs = driver.getWindowHandles();
+		
+		for(String id : allTabIDs) {
+			driver.switchTo().window(id);
+			String actualTitle = driver.getTitle().trim();
+			if(actualTitle.equals(tabTitle)) {
+				System.out.println("----------"+ actualTitle + "----------");
+				break;
+			}
+		}
+	}
+	
+	public void closeAllTabWithoutParent(WebDriver driver, String parentID) {
+		Set<String> allTabIDs = driver.getWindowHandles();
+		
+		for(String id : allTabIDs) {
+			if(!id.equals(parentID)) {
+				driver.switchTo().window(id);
+				driver.close();
+			}
+			driver.switchTo().window(parentID);
+		}
+	}
+	
+	public WebElement getWebElement(WebDriver driver, String xpathLocator) {
+		return driver.findElement(By.xpath(xpathLocator));
+	}
+	
+	public void clickToElement(WebDriver driver, String xpathLocator) {
+		getWebElement(driver, xpathLocator).click();
+	}
+	
+	public void sendkeyToElement(WebDriver driver, String xpathLocator, String textValue) {
+		WebElement element = getWebElement(driver, xpathLocator);
+		element.clear();
+		element.sendKeys(textValue);
+	}
+	
+	public String getElementText(WebDriver driver, String xpathLocator) {
+		return getWebElement(driver, xpathLocator).getText();
+	}
+	
+	//video 1:18:06
+	
 }
