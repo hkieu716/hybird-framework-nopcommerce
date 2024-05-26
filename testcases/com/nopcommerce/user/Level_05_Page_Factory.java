@@ -80,7 +80,7 @@ public class Level_05_Page_Factory extends BaseTest {
 
 		loginPage.clickToLoginButton();
 
-		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Wrong email");
+		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Please enter a valid email address.");
 	}
 
 	@Test
