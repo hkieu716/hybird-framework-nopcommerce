@@ -3,11 +3,11 @@ package com.nopcommerce.user;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.CustomerInfoPageObject;
-import pageObjects.PageGeneratorManager;
-import pageObjects.RegisterPageObject;
+import commons.PageGeneratorManager;
+import pageObjects.nopEcommerce.user.UserCustomerInfoPageObject;
+import pageObjects.nopEcommerce.user.UserHomePageObject;
+import pageObjects.nopEcommerce.user.UserLoginPageObject;
+import pageObjects.nopEcommerce.user.UserRegisterPageObject;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -24,7 +24,7 @@ public class Level_06_Page_Generator_Manager_III extends BaseTest {
 	@BeforeClass
 	public void beforeClass(String browserName) {
 		driver = getBrowserDriver(browserName);
-		homePage = PageGeneratorManager.getHomePage(driver);
+		homePage = PageGeneratorManager.getUserHomePage(driver);
 
 		driver.get("https://demo.nopcommerce.com/");
 		firstName = "Kieu";
@@ -135,9 +135,9 @@ public class Level_06_Page_Generator_Manager_III extends BaseTest {
 	}
 	private WebDriver driver;
 	private String firstName, lastName, invalidEmail, notFoundEmail, existingEmail, invalidPassword, validPassword;
-	private HomePageObject homePage;
-	private RegisterPageObject registerPage;
-	private LoginPageObject loginPage;
-	private CustomerInfoPageObject myAccountPage;
+	private UserHomePageObject homePage;
+	private UserRegisterPageObject registerPage;
+	private UserLoginPageObject loginPage;
+	private UserCustomerInfoPageObject myAccountPage;
 
 }

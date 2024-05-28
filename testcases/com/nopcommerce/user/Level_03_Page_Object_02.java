@@ -2,9 +2,9 @@ package com.nopcommerce.user;
 
 import org.testng.annotations.Test;
 
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.RegisterPageObject;
+import pageObjects.nopEcommerce.user.UserHomePageObject;
+import pageObjects.nopEcommerce.user.UserLoginPageObject;
+import pageObjects.nopEcommerce.user.UserRegisterPageObject;
 
 import org.testng.annotations.BeforeClass;
 
@@ -20,16 +20,16 @@ import org.testng.annotations.AfterClass;
 public class Level_03_Page_Object_02 {
 	private WebDriver driver;
 	private String firstName, lastName, invalidEmail, notFoundEmail, existingEmail, invalidPassword, validPassword;
-	private HomePageObject homePage;
-	private RegisterPageObject registerPage;
-	private LoginPageObject loginPage;
+	private UserHomePageObject homePage;
+	private UserRegisterPageObject registerPage;
+	private UserLoginPageObject loginPage;
 	private String projectPath = System.getProperty("user.dir");
 
 	@BeforeClass
 	public void beforeClass() {
 		System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDrivers\\chromedriver.exe");
 		driver = new ChromeDriver();
-		homePage = new HomePageObject(driver);
+		homePage = new UserHomePageObject(driver);
 
 		driver.get("https://demo.nopcommerce.com/");
 		firstName = "Kieu";
@@ -47,7 +47,7 @@ public class Level_03_Page_Object_02 {
 		homePage.clickToRegisterLink();
 
 		// Click register link -> nhảy sang trang register
-		registerPage = new RegisterPageObject(driver);
+		registerPage = new UserRegisterPageObject(driver);
 
 		System.out.println("Pre-condition - step02: Input the require fields");
 		registerPage.inputToFirstnameTextbox(firstName);
@@ -68,7 +68,7 @@ public class Level_03_Page_Object_02 {
 		homePage.clickToLoginLink();
 
 		// Từ trang home -> click login link -> login page
-		loginPage = new LoginPageObject(driver);
+		loginPage = new UserLoginPageObject(driver);
 
 		loginPage.clickToLoginButton();
 		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Please enter your email");
@@ -79,7 +79,7 @@ public class Level_03_Page_Object_02 {
 		homePage.clickToLoginLink();
 
 		// Từ trang home -> click login link -> login page
-		loginPage = new LoginPageObject(driver);
+		loginPage = new UserLoginPageObject(driver);
 		loginPage.inputToEmailTexbox(invalidEmail);
 
 		loginPage.clickToLoginButton();
@@ -92,7 +92,7 @@ public class Level_03_Page_Object_02 {
 		homePage.clickToLoginLink();
 
 		// Từ trang home -> click login link -> login page
-		loginPage = new LoginPageObject(driver);
+		loginPage = new UserLoginPageObject(driver);
 		loginPage.inputToEmailTexbox(notFoundEmail);
 
 		loginPage.clickToLoginButton();
@@ -106,7 +106,7 @@ public class Level_03_Page_Object_02 {
 		homePage.clickToLoginLink();
 
 		// Từ trang home -> click login link -> login page
-		loginPage = new LoginPageObject(driver);
+		loginPage = new UserLoginPageObject(driver);
 		loginPage.inputToEmailTexbox(existingEmail);
 		loginPage.inputToPasswordTextbox("");
 
@@ -121,7 +121,7 @@ public class Level_03_Page_Object_02 {
 		homePage.clickToLoginLink();
 
 		// Từ trang home -> click login link -> login page
-		loginPage = new LoginPageObject(driver);
+		loginPage = new UserLoginPageObject(driver);
 		loginPage.inputToEmailTexbox(existingEmail);
 		loginPage.inputToPasswordTextbox(invalidPassword);
 
@@ -135,14 +135,14 @@ public class Level_03_Page_Object_02 {
 		homePage.clickToLoginLink();
 
 		// Từ trang home -> click login link -> login page
-		loginPage = new LoginPageObject(driver);
+		loginPage = new UserLoginPageObject(driver);
 		loginPage.inputToEmailTexbox(existingEmail);
 		loginPage.inputToPasswordTextbox(validPassword);
 		
 		loginPage.clickToLoginButton();
 		
 		//login thành công -> homepage
-		homePage = new HomePageObject(driver);
+		homePage = new UserHomePageObject(driver);
 		
 		Assert.assertTrue(homePage.isMyAccountLinkDisplay());
 	}

@@ -1,14 +1,15 @@
-package pageObjects;
+package pageObjects.nopEcommerce.user;
 
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
-import pageUIs.RegisterPageUI;
+import commons.PageGeneratorManager;
+import pageUIs.nopEcommerce.user.RegisterPageUI;
 
-public class RegisterPageObject extends BasePage {
+public class UserRegisterPageObject extends BasePage {
 	private WebDriver driver;
 	
-	public RegisterPageObject(WebDriver driver) {
+	public UserRegisterPageObject(WebDriver driver) {
 		//biến local
 		this.driver = driver;
 	}
@@ -83,10 +84,10 @@ public class RegisterPageObject extends BasePage {
 		return getElementText(driver, RegisterPageUI.EXISTING_EMAIL_ERROR_MESSAGE);
 	}
 
-	public HomePageObject clickToLogoutLink() {
+	public UserHomePageObject clickToLogoutLink() {
 		waitForElementClickable(driver, RegisterPageUI.LOGOUT_BUTTON);
 		clickToElement(driver, RegisterPageUI.LOGOUT_BUTTON);
-		return PageGeneratorManager.getHomePage(driver);
+		return PageGeneratorManager.getUserHomePage(driver);
 		
 	}
 
