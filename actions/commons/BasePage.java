@@ -15,8 +15,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import pageObjects.nopEcommerce.admin.AdminLoginPageObject;
 import pageObjects.nopEcommerce.user.UserAddressPageObject;
 import pageObjects.nopEcommerce.user.UserCustomerInfoPageObject;
+import pageObjects.nopEcommerce.user.UserHomePageObject;
 import pageObjects.nopEcommerce.user.UserMyProductReviewPageObject;
 import pageObjects.nopEcommerce.user.UserRewardPointPageObject;
 import pageUIs.nopEcommerce.user.BasePageUI;
@@ -362,6 +364,17 @@ public class BasePage {
 		return PageGeneratorManager.getUserCustomerInfoPage(driver);
 	}
 	
+	public UserHomePageObject clickToLogoutLinkAtUserPage(WebDriver driver) {
+		waitForElementClickable(driver, BasePageUI.LOGOUT_LINK_AT_USER);
+		clickToElement(driver, BasePageUI.LOGOUT_LINK_AT_USER);
+		return PageGeneratorManager.getUserHomePage(driver);
+	}
+	
+	public AdminLoginPageObject clickToLogoutLinkAtAdminPage(WebDriver driver) {
+		waitForElementClickable(driver, BasePageUI.LOGOUT_LINK_AT_ADMIN);
+		clickToElement(driver, BasePageUI.LOGOUT_LINK_AT_ADMIN);
+		return PageGeneratorManager.getAdminLoginPage(driver);
+	}
 	private long longTimeout = 30;
 	
 	
